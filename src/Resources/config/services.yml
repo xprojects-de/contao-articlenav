@@ -1,8 +1,0 @@
-services:
-    XProjects\Articlenav\Controller\ArticlenavController:
-        tags:
-            -
-                name: contao.frontend_module
-                category: navigation
-                method: getResponse
-                template: nav_xarticlenav

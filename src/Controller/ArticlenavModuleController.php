@@ -2,17 +2,29 @@
 
 namespace XProjects\Articlenav\Controller;
 
-use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
+use Contao\Module;
+use Contao\BackendTemplate;
 use Contao\ArticleModel;
 use Contao\Controller;
-use Contao\ModuleModel;
-use Contao\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class ArticlenavController extends AbstractFrontendModuleController {
+class ArticlenavModuleController extends Module {
 
-  protected function getResponse(Template $template, ModuleModel $model, Request $request): ?Response {
+  protected $strTemplate = 'nav_xarticlenav';
+
+  public function generate() {
+    if (TL_MODE == 'BE') {
+      $objTemplate = new BackendTemplate('be_wildcard');
+      $objTemplate->wildcard = '### ModuleXArticleNav ###';
+      $objTemplate->id = $this->id;
+      $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+      return $objTemplate->parse();
+    }
+
+    $strBuffer = parent::generate();
+    return ($this->Template->items != '') ? $strBuffer : '';
+  }
+
+  protected function compile() {
     global $objPage;
     $pageID = $objPage->id;
     if ($this->xarticlenavpageid != 0) {
@@ -38,8 +50,7 @@ class ArticlenavController extends AbstractFrontendModuleController {
         }
       }
     }
-    $template->items = $articleItems;
-    return $template->getResponse();
+    $this->Template->items = $articleItems;
   }
 
 }
