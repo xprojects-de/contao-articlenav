@@ -1,0 +1,32 @@
+{
+  "name": "xprojects/contao-articlenav",
+  "description": "Articlenavigation for Contao",
+  "keywords": ["contao", "articlenav"],
+  "type": "contao-bundle",
+  "version": "0.1",
+  "license": "LGPL-3.0-or-later",
+  "require": {
+    "php": ">=7.0",
+    "contao/core-bundle": "^4.9"
+  },
+  "authors": [
+    {
+      "name": "XProjects",
+      "homepage": "https://x-projects.de",
+      "email": "infos@x-projects.de",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "XProjects\\Articlenav\\": "src/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "XProjects\\Articlenav\\ContaoManager\\Plugin",
+    "contao-component-dir": "public"
+  },
+  "config": {
+    "contao-component-dir": "public"
+  }
+}
