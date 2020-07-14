@@ -3,7 +3,7 @@
   "description": "Articlenavigation for Contao",
   "keywords": ["contao", "articlenav"],
   "type": "contao-bundle",
-  "version": "0.5",
+  "version": "0.6",
   "license": "LGPL-3.0-or-later",
   "require": {
     "php": ">=7.0",

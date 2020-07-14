@@ -27,8 +27,8 @@ class ArticlenavModuleController extends Module {
   protected function compile() {
     global $objPage;
     $pageID = $objPage->id;
-    if ($this->xarticlenavpageid != 0) {
-      $pageID = $this->xarticlenavpageid;
+    if ($this->articlenavpageid != 0) {
+      $pageID = $this->articlenavpageid;
     }
     $assetsDir = 'bundles/articlenav';
     $GLOBALS['TL_JAVASCRIPT'][] = $assetsDir . '/js/articlenav.js|static';
