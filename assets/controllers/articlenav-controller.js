@@ -19,7 +19,7 @@ export default class ArticleNavController extends Controller {
 
     navigate(event) {
 
-        event.preventDefault();
+        // event.preventDefault();
         if (this.offsetValue <= 0) {
             this.scrollToElement(this.identValue);
         } else {

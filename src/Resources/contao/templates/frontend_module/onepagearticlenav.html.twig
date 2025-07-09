@@ -10,10 +10,10 @@
             {% for item in items %}
 
                 <li>
-                    <a href="#" class="articlenavitem" data-controller="articlenav"
+                    <a href="{{ item.href }}" class="articlenavitem" data-controller="articlenav"
                        data-action="click->articlenav#navigate"
                        data-articlenav-href-value="{{ item.href }}" data-articlenav-ident-value="{{ item.articleid }}"
-                       data-articlenav-alias-value="{{ item.alias }}" data-articlenav-offset-value="0"
+                       data-articlenav-alias-value="{{ item.alias }}" data-articlenav-offset-value="{{ offsetTop }}"
                        title="{{ item.title }}">
                         {{ item.text }}
                     </a>

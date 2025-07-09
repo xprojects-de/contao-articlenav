@@ -7,6 +7,7 @@ namespace XProjects\Articlenav\Controller;
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\ArticleModel;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
+use Contao\CoreBundle\Exception\PageNotFoundException;
 use Contao\CoreBundle\Routing\ContentUrlGenerator;
 use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ModuleModel;
@@ -32,6 +33,10 @@ class ArticlenavController extends AbstractFrontendModuleController
     }
 
     /**
+     * @param FragmentTemplate $template
+     * @param ModuleModel $model
+     * @param Request $request
+     * @return Response
      * @throws ExceptionInterface
      */
     public function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
@@ -41,17 +46,25 @@ class ArticlenavController extends AbstractFrontendModuleController
         $styleClass = (string)($cssID[1] ?? '');
 
         $pageModel = $this->getPageModel();
+        if (!$pageModel instanceof PageModel) {
+            throw new PageNotFoundException('not page model given');
+        }
+
+        $url = $this->contentUrlGenerator->generate($pageModel, [], UrlGeneratorInterface::ABSOLUTE_URL);
 
         if ((int)$model->articlenavpageid !== 0) {
 
             $customPageModel = PageModel::findById($model->articlenavpageid);
             if ($customPageModel instanceof PageModel) {
-                $pageModel = $customPageModel;
+                $url = $this->contentUrlGenerator->generate($customPageModel, [], UrlGeneratorInterface::ABSOLUTE_URL);
             }
 
         }
 
-        $url = $this->contentUrlGenerator->generate($pageModel, [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $offsetTop = 0;
+        if ((int)$model->articlenavoffsettop > 0) {
+            $offsetTop = (int)$model->articlenavoffsettop;
+        }
 
         $articleItems = [];
 
@@ -83,6 +96,7 @@ class ArticlenavController extends AbstractFrontendModuleController
         $template->set('containerId', \trim($styleId) !== '' ? \trim($styleId) : 'articlenavcontainer_' . $model->id);
         $template->set('class', \trim($styleClass) !== '' ? \trim($styleClass) : 'articlenav ');
         $template->set('items', $articleItems);
+        $template->set('offsetTop', $offsetTop);
 
         return $template->getResponse();
 
