@@ -6,8 +6,9 @@
             {% for item in items %}
 
                 <li>
-                    <a href="{{ item.href }}" class="articlenavitem" data-id="{{ item.data-id }}"
-                       data-alias="{{ item.data-alias }}" title="{{ item.title }}">
+                    <a href="#" class="articlenavitem" data-action="click->articlenav#navigate"
+                       data-articlenav-href-value="{{ item.href }}" data-articlenav-ident-value="{{ item.data-id }}"
+                       data-articlenav-alias-value="{{ item.data-alias }}" title="{{ item.title }}">
                         {{ item.text }}
                     </a>
                 </li>
