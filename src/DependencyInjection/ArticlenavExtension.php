@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XProjects\Articlenav\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
