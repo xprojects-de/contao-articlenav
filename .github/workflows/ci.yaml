@@ -22,13 +22,13 @@ jobs:
       - name: Zip
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r artifact/release_contao_mobilemenu_${{ steps.date.outputs.date }}.zip src composer.json
+          args: zip -qq -r artifact/release_contao_articlenav_${{ steps.date.outputs.date }}.zip src composer.json
 
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: release_contao_mobilemenu_${{ steps.date.outputs.date }}.zip
-          path: artifact/release_contao_mobilemenu_${{ steps.date.outputs.date }}.zip
+          name: release_contao_articlenav_${{ steps.date.outputs.date }}.zip
+          path: artifact/release_contao_articlenav_${{ steps.date.outputs.date }}.zip
 
       - name: Release
         uses: marvinpinto/action-automatic-releases@latest
@@ -38,4 +38,4 @@ jobs:
           prerelease: true
           title: Master-${{ steps.date.outputs.date }}
           files: |
-            artifact/release_contao_mobilemenu_${{ steps.date.outputs.date }}.zip
+            artifact/release_contao_articlenav_${{ steps.date.outputs.date }}.zip
