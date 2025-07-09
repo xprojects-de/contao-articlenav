@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
 PaletteManipulator::create()
-    ->addField('articlenav', 'title_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('articlenav', 'title_legend', PaletteManipulator::POSITION_PREPEND)
     ->applyToPalette('default', 'tl_article');
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['articlenav'] = array
