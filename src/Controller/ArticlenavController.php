@@ -45,6 +45,8 @@ class ArticlenavController extends AbstractFrontendModuleController
         $styleId = (string)($cssID[0] ?? '');
         $styleClass = (string)($cssID[1] ?? '');
 
+        $preventEvent = true;
+
         $pageModel = $this->getPageModel();
         if (!$pageModel instanceof PageModel) {
             throw new PageNotFoundException('not page model given');
@@ -54,7 +56,10 @@ class ArticlenavController extends AbstractFrontendModuleController
 
             $customPageModel = PageModel::findById($model->articlenavpageid);
             if ($customPageModel instanceof PageModel) {
+
+                $preventEvent = $customPageModel->id === $pageModel->id;
                 $pageModel = $customPageModel;
+
             }
 
         }
@@ -97,6 +102,7 @@ class ArticlenavController extends AbstractFrontendModuleController
         $template->set('class', \trim($styleClass) !== '' ? \trim($styleClass) : 'articlenav ');
         $template->set('items', $articleItems);
         $template->set('offsetTop', $offsetTop);
+        $template->set('preventEvent', $preventEvent === true ? 1 : 0);
 
         return $template->getResponse();
 
