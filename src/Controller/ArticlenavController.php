@@ -50,16 +50,16 @@ class ArticlenavController extends AbstractFrontendModuleController
             throw new PageNotFoundException('not page model given');
         }
 
-        $url = $this->contentUrlGenerator->generate($pageModel, [], UrlGeneratorInterface::ABSOLUTE_URL);
-
         if ((int)$model->articlenavpageid !== 0) {
 
             $customPageModel = PageModel::findById($model->articlenavpageid);
             if ($customPageModel instanceof PageModel) {
-                $url = $this->contentUrlGenerator->generate($customPageModel, [], UrlGeneratorInterface::ABSOLUTE_URL);
+                $pageModel = $customPageModel;
             }
 
         }
+
+        $url = $this->contentUrlGenerator->generate($pageModel, [], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $offsetTop = 0;
         if ((int)$model->articlenavoffsettop > 0) {
