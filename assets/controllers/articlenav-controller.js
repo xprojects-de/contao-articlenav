@@ -14,6 +14,9 @@ export default class ArticleNavController extends Controller {
         },
         offset: {
             type: Number, default: 0
+        },
+        preventevent: {
+            type: Number, default: 1
         }
     }
 
@@ -21,7 +24,9 @@ export default class ArticleNavController extends Controller {
 
     navigate(event) {
 
-        event.preventDefault();
+        if (this.preventeventValue === 1) {
+            event.preventDefault();
+        }
 
         const elements = document.querySelectorAll('a[data-controller]');
 
