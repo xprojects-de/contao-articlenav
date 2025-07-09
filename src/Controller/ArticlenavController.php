@@ -82,8 +82,8 @@ class ArticlenavController extends AbstractFrontendModuleController
             }
 
             $template->set('id', $model->id);
-            $template->set('containerId', \trim($styleId) !== '' ? \trim($styleId) : 'mobilemenucontainer_' . $model->id);
-            $template->set('class', \trim($styleClass) !== '' ? \trim($styleClass) : 'mobilemenu ');
+            $template->set('containerId', \trim($styleId) !== '' ? \trim($styleId) : 'articlenavcontainer_' . $model->id);
+            $template->set('class', \trim($styleClass) !== '' ? \trim($styleClass) : 'articlenav ');
             $template->set('items', $articleItems);
 
             return $template->getResponse();
