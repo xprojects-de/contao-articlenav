@@ -3,14 +3,8 @@ services:
   _defaults:
     autoconfigure: true
     autowire: true
-    public: true
+    public: false
 
-  XProjects\Articlenav\Controller\ArticlenavController:
-    arguments:
-      - '@assets.packages'
-      - '@contao.routing.content_url_generator'
-      - '@contao.routing.scope_matcher'
-    tags:
-      - name: contao.frontend_module
-        category: miscellaneous
-        template: articlenav
+  XProjects\Articlenav\:
+    resource: ../../
+    exclude: ../../{ContaoManager,DependencyInjection,Resources}
