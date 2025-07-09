@@ -17,9 +17,20 @@ export default class ArticleNavController extends Controller {
         }
     }
 
+    static targets = ['navitem']
+
     navigate(event) {
 
-        // event.preventDefault();
+        event.preventDefault();
+
+        const elements = document.querySelectorAll('a[data-controller]');
+
+        elements.forEach(element => {
+            element.classList.remove('active');
+        });
+
+        this.navitemTarget.classList.add('active');
+
         if (this.offsetValue <= 0) {
             this.scrollToElement(this.identValue);
         } else {
