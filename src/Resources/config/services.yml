@@ -1,0 +1,15 @@
+services:
+
+  _defaults:
+    autoconfigure: true
+    autowire: true
+    public: true
+
+  XProjects\Articlenav\Controller\ArticlenavController:
+    arguments:
+      - '@assets.packages'
+      - '@contao.routing.content_url_generator'
+    tags:
+      - name: contao.frontend_module
+        category: miscellaneous
+        template: articlenav
