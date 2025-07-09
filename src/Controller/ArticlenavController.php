@@ -8,7 +8,6 @@ use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController
 use Contao\ArticleModel;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
 use Contao\CoreBundle\Routing\ContentUrlGenerator;
-use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ModuleModel;
 use Contao\PageModel;
@@ -26,7 +25,6 @@ class ArticlenavController extends AbstractFrontendModuleController
 
     protected Packages $packages;
     private ContentUrlGenerator $contentUrlGenerator;
-    private ScopeMatcher $scopeMatcher;
 
     public function __construct(
         Packages            $packages,
@@ -42,7 +40,6 @@ class ArticlenavController extends AbstractFrontendModuleController
      */
     public function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
-
         $GLOBALS['TL_JAVASCRIPT'][] = $this->packages->getUrl('articlenav.js', 'articlenav');
 
         $cssID = StringUtil::deserialize($model->cssID, true);
