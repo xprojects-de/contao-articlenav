@@ -1,0 +1,10 @@
+services:
+
+  _defaults:
+    autoconfigure: true
+    autowire: true
+    public: false
+
+  XProjects\Articlenav\:
+    resource: ../../
+    exclude: ../../{ContaoManager,DependencyInjection,Resources}

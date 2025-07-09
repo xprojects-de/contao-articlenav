@@ -1,0 +1,27 @@
+{% block articlenav %}
+
+    {% add "articlenav_js" to head %}
+        <script src="{{ asset('articlenav.js', 'articlenav') }}" type="module"></script>
+    {% endadd %}
+
+    <nav class="{{ class }}" id="{{ containerId }}">
+        <ul>
+
+            {% for item in items %}
+
+                <li>
+                    <a href="{{ item.href }}" class="articlenavitem" data-controller="articlenav"
+                       data-action="click->articlenav#navigate"
+                       data-articlenav-href-value="{{ item.href }}" data-articlenav-ident-value="{{ item.articleid }}"
+                       data-articlenav-alias-value="{{ item.alias }}" data-articlenav-offset-value="{{ offsetTop }}" data-articlenav-target="navitem"
+                       title="{{ item.title }}">
+                        {{ item.text }}
+                    </a>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+    </nav>
+
+{% endblock %}

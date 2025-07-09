@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ac281bc4-8d0e-418a-8b39-cb8bdd941988" name="Local" url="https://contao.local5.latest:8890">
+        <fileTransfer mountedRoot="$PROJECT_DIR$/../../MAMPP/contao.local5-latest/vendor/xprojects" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,9 @@
+{
+  "entrypoints": {
+    "articlenav": {
+      "js": [
+        "/bundles/articlenav/articlenav.9802344f.js"
+      ]
+    }
+  }
+}
