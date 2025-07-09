@@ -7,6 +7,7 @@ namespace XProjects\Articlenav\Controller;
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\ArticleModel;
 use Contao\CoreBundle\Routing\ContentUrlGenerator;
+use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ModuleModel;
 use Contao\PageModel;
@@ -14,24 +15,36 @@ use Contao\StringUtil;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Exception\ExceptionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ArticlenavController extends AbstractFrontendModuleController
 {
     protected Packages $packages;
     private ContentUrlGenerator $contentUrlGenerator;
+    private ScopeMatcher $scopeMatcher;
 
     public function __construct(
         Packages            $packages,
-        ContentUrlGenerator $contentUrlGenerator
+        ContentUrlGenerator $contentUrlGenerator,
+        ScopeMatcher        $scopeMatcher
     )
     {
         $this->packages = $packages;
         $this->contentUrlGenerator = $contentUrlGenerator;
+        $this->scopeMatcher = $scopeMatcher;
     }
 
+    /**
+     * @throws ExceptionInterface
+     */
     public function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
+
+        if ($this->scopeMatcher->isBackendRequest($request)) {
+            return new Response('### Article-Navigation ###', Response::HTTP_OK);
+        }
+
         $GLOBALS['TL_JAVASCRIPT'][] = $this->packages->getUrl('articlenav.js', 'articlenav');
 
         $cssID = StringUtil::deserialize($model->cssID, true);
