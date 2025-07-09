@@ -2,5 +2,7 @@
 
 declare(strict_types=1);
 
-$GLOBALS['TL_LANG']['FMD']['articlenav'] = array('Artikelnavigation (One-Pager)', 'Modul zu Anzeige der Artikelnavigation');
+use XProjects\Articlenav\Controller\ArticlenavController;
+
+$GLOBALS['TL_LANG']['FMD'][ArticlenavController::TYPE] = array('OnePage Artikelnavigation', 'Modul zu Anzeige der Artikelnavigation');
 

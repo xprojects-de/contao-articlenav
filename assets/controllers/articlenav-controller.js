@@ -14,13 +14,11 @@ export default class ArticleNavController extends Controller {
 
     navigate() {
 
-        const href = this.hrefValue;
-        const ident = this.identValue;
-        const alias = this.aliasValue;
+        console.log('drinnen');
 
-        console.log(href);
-        console.log(ident);
-        console.log(alias);
+        console.log(this.hrefValue);
+        console.log(this.identValue);
+        console.log(this.aliasValue);
 
     }
 

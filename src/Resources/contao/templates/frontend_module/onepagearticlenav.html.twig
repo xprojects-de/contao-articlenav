@@ -1,5 +1,9 @@
 {% block articlenav %}
 
+    {% add "articlenav_js" to head %}
+        <script src="{{ asset('articlenav.js', 'articlenav') }}" type="module"></script>
+    {% endadd %}
+
     <nav class="{{ class }}" id="{{ containerId }}">
         <ul data-controller="articlenav">
 
@@ -7,8 +11,8 @@
 
                 <li>
                     <a href="#" class="articlenavitem" data-action="click->articlenav#navigate"
-                       data-articlenav-href-value="{{ item.href }}" data-articlenav-ident-value="{{ item.data-id }}"
-                       data-articlenav-alias-value="{{ item.data-alias }}" title="{{ item.title }}">
+                       data-articlenav-href-value="{{ item.href }}" data-articlenav-ident-value="{{ item.articleid }}"
+                       data-articlenav-alias-value="{{ item.alias }}" title="{{ item.title }}">
                         {{ item.text }}
                     </a>
                 </li>

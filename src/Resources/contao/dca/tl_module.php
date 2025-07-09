@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use XProjects\Articlenav\Controller\ArticlenavController;
 
-$GLOBALS['TL_DCA']['tl_module']['palettes'][ArticlenavController::TYPE] = '{title_legend},name,type;articlenavpageid;{expert_legend:hide},cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes'][ArticlenavController::TYPE] = '{title_legend},name,type;articlenavpageid;{template_legend:hide},customTpl;{expert_legend:hide},cssID';
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['articlenavpageid'] = array
 (

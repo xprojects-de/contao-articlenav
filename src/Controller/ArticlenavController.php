@@ -12,26 +12,22 @@ use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ModuleModel;
 use Contao\PageModel;
 use Contao\StringUtil;
-use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ExceptionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-#[AsFrontendModule(self::TYPE, template: 'frontend_module/articlenav')]
+#[AsFrontendModule(self::TYPE, category: 'miscellaneous', template: 'frontend_module/onepagearticlenav')]
 class ArticlenavController extends AbstractFrontendModuleController
 {
-    public const TYPE = 'articlenav';
+    public const TYPE = 'onepagearticlenav';
 
-    protected Packages $packages;
     private ContentUrlGenerator $contentUrlGenerator;
 
     public function __construct(
-        Packages            $packages,
         ContentUrlGenerator $contentUrlGenerator
     )
     {
-        $this->packages = $packages;
         $this->contentUrlGenerator = $contentUrlGenerator;
     }
 
@@ -40,8 +36,6 @@ class ArticlenavController extends AbstractFrontendModuleController
      */
     public function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
-        $GLOBALS['TL_JAVASCRIPT'][] = $this->packages->getUrl('articlenav.js', 'articlenav');
-
         $cssID = StringUtil::deserialize($model->cssID, true);
         $styleId = (string)($cssID[0] ?? '');
         $styleClass = (string)($cssID[1] ?? '');
@@ -66,7 +60,7 @@ class ArticlenavController extends AbstractFrontendModuleController
 
             foreach ($objArticles as $objRow) {
 
-                if ((int)$objRow->xarticlenav === 0) {
+                if ((int)$objRow->articlenav === 0) {
 
                     $articleItems[] = [
                         'hrefalias' => $url . '#' . $objRow->alias,
@@ -74,9 +68,9 @@ class ArticlenavController extends AbstractFrontendModuleController
                         'base' => $url,
                         'title' => $objRow->title,
                         'text' => $objRow->title,
-                        'data-id' => 'article-' . $objRow->id,
-                        'data-alias' => $objRow->alias,
-                        'id' => $objRow->id,
+                        'articleid' => 'article-' . $objRow->id,
+                        'alias' => $objRow->alias,
+                        'id' => $objRow->id
                     ];
 
                 }
