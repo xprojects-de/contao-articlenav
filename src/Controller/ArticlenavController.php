@@ -39,10 +39,7 @@ class ArticlenavController extends AbstractFrontendModuleController
             $styleId = (string)($cssID[0] ?? '');
             $styleClass = (string)($cssID[1] ?? '');
 
-            $pageModel = $request->attributes->get('pageModel');
-            if (!$pageModel instanceof PageModel) {
-                throw new PageNotFoundException('Not found');
-            }
+            $pageModel = $this->getPageModel();
 
             if ((int)$model->articlenavpageid !== 0) {
 
