@@ -60,8 +60,7 @@ export default class ArticleNavController extends Controller {
         const element = document.getElementById(targetID);
         if (element) {
 
-            const elementPosition = element.offsetTop;
-            const targetPosition = elementPosition - offset;
+            const targetPosition = element.getBoundingClientRect().top + window.scrollY - offset;
 
             window.scrollTo({
                 top: targetPosition,
