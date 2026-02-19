@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 #[AsFrontendModule(self::TYPE, category: 'miscellaneous', template: 'frontend_module/onepagearticlenav')]
 class ArticlenavController extends AbstractFrontendModuleController
 {
-    public const TYPE = 'onepagearticlenav';
+    public const string TYPE = 'onepagearticlenav';
 
     private ContentUrlGenerator $contentUrlGenerator;
 
